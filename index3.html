@@ -1,0 +1,118 @@
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Video.js 5 -->
+<link href="./lib/video-js.css" rel="stylesheet">
+<script src="./lib/video.js"></script>
+
+<!-- Common -->
+<link href="./lib/videojs.vast.vpaid.min.css" rel="stylesheet">
+
+<!-- Video.js 5 -->
+<script src="./lib/videojs_5.vast.vpaid.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+	var container = document.getElementById("vjs-container");
+	create_video(container);		
+	function create_video(container)
+	{
+		var videoTag = '<video id="video-js" class="video-js vjs-default-skin" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png" >' +
+        '<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"/>' +
+        '<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm"/>' +
+        '<source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg"/>' +
+        '<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that ' +
+        '<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>' +
+        '</p>' +
+        '</video>';
+		container.innerHTML = videoTag;
+		
+		var video_container = document.getElementById("video-js");
+		videojs.plugin('ads-setup', function (opts) {
+			var player = this;
+			var adsCancelTimeout = 3000;
+
+			var vastAd = player.vastClient({
+			  adTagUrl : 'http://servedby.flashtalking.com/imp/1/31714;812030;208;xml;DailyMail;640x360VASTHTML5/?cachebuster=%%CACHEBUSTER%%',
+			  playAdAlways: true,
+			  adCancelTimeout: adsCancelTimeout,
+			  adsEnabled: true
+			});
+			
+			player.on('reset', function () {
+				if (!vastAd.isEnabled()) {
+					vastAd.enable();
+				} else {
+					vastAd.enable();
+				}
+			});
+		});
+		
+		var adPluginOpts = {
+			  "plugins": {
+				"ads-setup":{
+				}
+			  }
+			};
+		
+		player = videojs(video_container, adPluginOpts);
+		player.play();
+		if(player) {
+			  player.on('vast.adStart', function() {
+				player.one('vast.adEnd', function() {
+					player.dispose();
+					create_video(container);
+				});
+			  });
+			}
+	}
+});
+</script>
+
+
+</head>
+<body>
+
+<video id="example_video_1" class="video-js vjs-default-skin"
+    controls preload="auto" width="960" height="396"
+    poster="http://s22.postimg.org/lfnkkdrv4/vidoverlay.jpg"
+    data-setup='{
+      "plugins": {
+      "vastClient": {
+        "adTagUrl": "http://rtr.innovid.com/r1.5554946ab01d97.36996823;cb=%25%CACHEBUSTER%25%25",
+        "adsCancelTimeout": 50000,
+        "adsEnabled": true
+        }
+      }
+    }'>
+  <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+  <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+  <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+
+<!--
+	<video id="video-js" class="video-js vjs-default-skin" controls preload="auto" poster="http://vjs.zencdn.net/v/oceans.png" >
+		<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4"/>
+		<source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm"/>
+		<source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg"/>
+		<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that 
+		<a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+		</p>
+	</video>
+	//-->
+	
+	
+<div id="vjs-container">
+</div>
+
+<div class="vjs-video-container">
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link href="./lib/video-js.css" rel="stylesheet">
+<link href="./lib/videojs.vast.vpaid.min.css" rel="stylesheet">
+<script src="./lib/vast_player.js"></script>
+<!--<script src="./lib/vast_player.min.js"></script>//-->
+<script>
+$(document).ready(function(){
+	var array_Ads = ["http://vast.bp3863356.btrll.com/vast/3863356?n=1426410433&br_w=300&br_h=250&br_pageurl=blah",
+			"https://loopme.me/api/vast/ads?appId=e18c19fa43&vast=2&uid=1234&ip=8.8.8.8&bundleid=com.loopme&appname=my_talking_pet&sdk=16.2&exchange=admarvel", 
+		"http://4ofsx.ads.tremorhub.com/ad/tag?adCode=rxnor-qm15m&playerWidth=300&playerHeight=250&playerPosition=1&mediaId=flightninetynine&srcPageUrl=http://pulltwo.com"];
+	vastAds_player(array_Ads);
+});
+</script>
+</head>
+<body>
+
+<div id="vjs-container">
+</div>
+
+<br>
+<br>
+<br>
+<b>
+Example hardcoded AdsTags<br>
+1) http://vast.bp3867826.btrll.com/vast/3867826?n=__random-number__&br_pageurl=http://pulltwo.com&br_w=__player-width__&br_h=__player-height__&br_conurl= <br>
+2) http://4ofsx.ads.tremorhub.com/ad/tag?adCode=rxnor-qm15m&playerWidth=300&playerHeight=250&playerPosition=1&mediaId=flightninetynine&srcPageUrl=http://pulltwo.com <br>
+</b>
+</body>
+</html>

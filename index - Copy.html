@@ -1,0 +1,43 @@
+<html>
+<head>
+
+<!-- Video.js 5 -->
+<link href="./lib/video-js.css" rel="stylesheet">
+<script src="./lib/video.js"></script>
+
+
+<!-- Common -->
+<link href="./lib/videojs.vast.vpaid.min.css" rel="stylesheet">
+
+<!-- Video.js 5 -->
+<script src="./lib/videojs_5.vast.vpaid.min.js"></script>
+
+</head>
+<body>
+
+<video id="example_video_1" class="video-js vjs-default-skin"
+    controls preload="auto" width="960" height="396"
+    poster="http://s22.postimg.org/lfnkkdrv4/vidoverlay.jpg"
+    data-setup='{
+      "plugins": {
+      "vastClient": {
+        "adTagUrl": "http://servedby.flashtalking.com/imp/1/31714;812030;208;xml;DailyMail;640x360VASTHTML5/?cachebuster=%%CACHEBUSTER%%",
+        "adsCancelTimeout": 50000,
+		 "controls": true, "autoplay": true, "preload": "auto",
+        "adsEnabled": true
+        }
+      }
+    }'>
+  <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'/>
+  <source src="http://vjs.zencdn.net/v/oceans.webm" type='video/webm'/>
+  <source src="http://vjs.zencdn.net/v/oceans.ogv" type='video/ogg'/>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+
+<div class="vjs-video-container">
+</div>
+</body>
+</html>
